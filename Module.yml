@@ -1,0 +1,97 @@
+version: 1.0.0
+name: Melita IO Batch for devices controller
+description: Module for communication with melita.io API for devices controller, for sending requests to multiple devices
+icon: https://icons-020-demo.s3.eu-central-1.amazonaws.com/mi_melita_output.png
+type: input
+tags:
+  - Melita.io
+categories:
+  - id: category
+    name: Ouput
+image:
+  name: weevenetwork/melita-io-batch
+  tag: latest
+environments:
+  - key: HOST_NAME
+    description: Host name/address where the server will run.
+    value: ''
+    default: 0.0.0.0
+    type: string
+    name: Host Name
+  - key: HOST_PORT
+    description: Port on which the server will run.
+    value: ''
+    default: 80
+    type: integer
+    name: Port
+  - key: EGRESS_URL
+    description: URL to pass the result payload to
+    value: ''
+    default:
+    type: string
+    name: Egress URL
+  - key: MELITA_API_URL
+    description: Melita API URL used for communication
+    value: ''
+    default:
+    type: string
+    name: Melita API URL
+- key: DEVICE_EUI_LIST
+    description: List of device EUIs seperated by comma
+    value: ''
+    default:
+    type: string
+    name: List of device EUIs seperated by comma
+  - key: EXECUTE_SINGLE_COMMAND
+    description: Only execute single command via call
+    value: ''
+    default: no
+    type: enum
+    options:
+      - yes
+      - no
+    name: Execute single command
+  - key: SINGLE_COMMAND
+    value: ''
+    default:
+    type: enum
+    options:
+      - createDevice
+      - getDevices
+      - getProfiles
+      - createProfile
+      - getDeviceProfile
+      - createContractUrl
+      - deleteContractUrl
+      - updateDeviceLabel
+      - getContractDevice
+      - updateDeviceProfile
+      - removeDevice
+      - getDeviceApiKey
+      - getDeviceQueue
+      - addDownlinkDeviceQueue
+      - flushDeviceQueue
+      - suspendResumeDevice
+      - getDeviceUsage
+    name: Single command name
+  - key: AUTHENTICATION_API_KEY
+    description: Authentication token for authorization
+    value: ''
+    default: ''
+    type: string
+    name: Authentication token
+  - key: ERROR_URL
+    description: URL for reporting error if request fails
+    value: ''
+    default: ''
+    type: string
+    name: Error reporting URL
+commands: []
+document:
+  ports: []
+  volumes: []
+  restart_policy:
+    condition: on-failure
+    delay: 10s
+    max_attempts: 3
+    window: 120s
