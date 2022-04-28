@@ -12,18 +12,6 @@ image:
   name: weevenetwork/melita-io-batch
   tag: latest
 environments:
-  - key: INGRESS_HOST
-    description: Host name/address where the server will run.
-    value: ''
-    default: 0.0.0.0
-    type: string
-    name: Host Name
-  - key: INGRESS_PORT
-    description: Port on which the server will run.
-    value: ''
-    default: 80
-    type: integer
-    name: Port
   - key: MELITA_API_URL
     description: Melita API URL used for communication
     value: ''
