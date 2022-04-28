@@ -1,4 +1,4 @@
-# Melita IO
+# Melita IO Batch
 
 |                |                                  |
 | -------------- | -------------------------------- |
@@ -7,7 +7,7 @@
 | Dockerhub Link | [weevenetwork/melita-io-batch]() |
 | Authors        | Mesud Pasic                      |
 
-- [MQTT Ingress](#melita-io-batch)
+- [Melita IO Batch](#melita-io-batch)
   - [Description](#description)
   - [Features](#features)
   - [Environment Variables](#environment-variables)
@@ -17,7 +17,7 @@
 
 ## Description
 
-Melita.IO API module.
+Module API module for communication with melita.io API for devices controller, for sending requests to multiple device.
 
 ## Features
 
@@ -26,8 +26,6 @@ Melita.IO API module.
 
 ## Environment Variables
 
-- INGRESS_HOST
-- INGRESS_PORT
 - EXECUTE_SINGLE_COMMAND
 - SINGLE_COMMAND
 - DEVICE_EUI_LIST
@@ -39,8 +37,6 @@ Melita.IO API module.
 | Environment Variables | type | Description |
 | --- | --- | --- |
 | MODULE_NAME | string | Name of the module |
-| INGRESS_HOST | string | Host where app is running |
-| INGRESS_PORT | string | Port where app is running |
 | EXECUTE_SINGLE_COMMAND | string | yes/no to specify if module supports only executing single command |
 | SINGLE_COMMAND | string | if EXECUTE_SINGLE_COMMAND=no, then users will have to provide in request "command" parameter with command name |
 | MELITA_API_URL | string | Melita.io API URL |

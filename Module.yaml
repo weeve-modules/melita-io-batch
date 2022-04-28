@@ -1,13 +1,13 @@
 version: 1.0.0
-name: Melita IO Batch for devices controller
+name: Melita IO Batch
 description: Module for communication with melita.io API for devices controller, for sending requests to multiple devices
 icon: https://icons-020-demo.s3.eu-central-1.amazonaws.com/mi_melita_output.png
-type: process
+type: output
 tags:
   - Melita.io
 categories:
   - id: category
-    name: Ouput
+    name: Egress
 image:
   name: weevenetwork/melita-io-batch
   tag: latest
@@ -30,7 +30,7 @@ environments:
     default:
     type: string
     name: Melita API URL
-- key: DEVICE_EUI_LIST
+  - key: DEVICE_EUI_LIST
     description: List of device EUIs seperated by comma
     value: ''
     default:
