@@ -1,7 +1,7 @@
 const {
   EGRESS_URL,
-  HOST_NAME,
-  HOST_PORT,
+  INGRESS_HOST,
+  INGRESS_PORT,
   MODULE_NAME,
   EXECUTE_SINGLE_COMMAND,
   SINGLE_COMMAND,
@@ -145,7 +145,7 @@ app.use(async (err, req, res, next) => {
 })
 
 if (require.main === module) {
-  app.listen(HOST_PORT, HOST_NAME, () => {
-    console.log(`${MODULE_NAME} listening on ${HOST_PORT}`)
+  app.listen(INGRESS_PORT, INGRESS_HOST, () => {
+    console.log(`${MODULE_NAME} listening on ${INGRESS_PORT}`)
   })
 }

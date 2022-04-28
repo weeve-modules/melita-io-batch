@@ -2,7 +2,7 @@ version: 1.0.0
 name: Melita IO Batch for devices controller
 description: Module for communication with melita.io API for devices controller, for sending requests to multiple devices
 icon: https://icons-020-demo.s3.eu-central-1.amazonaws.com/mi_melita_output.png
-type: input
+type: process
 tags:
   - Melita.io
 categories:
@@ -12,13 +12,13 @@ image:
   name: weevenetwork/melita-io-batch
   tag: latest
 environments:
-  - key: HOST_NAME
+  - key: INGRESS_HOST
     description: Host name/address where the server will run.
     value: ''
     default: 0.0.0.0
     type: string
     name: Host Name
-  - key: HOST_PORT
+  - key: INGRESS_PORT
     description: Port on which the server will run.
     value: ''
     default: 80
