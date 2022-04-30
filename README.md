@@ -67,18 +67,16 @@ Module API module for communication with melita.io API for devices controller, f
 ## Payload for POST request looks like, depending on the command, params can be different, but deviceEUI needs to be passed always
 
 ```js
-{
-	"data":{
-		"command": {
-			"name": "addDownlinkDeviceQueue",
-			"params": {
-					"confirmed": true,
-					"data": "14161712131819151B22",
-					"devEUI": "70B3D52DD3003E30",
-					"fPort": 1
-			}
+{	
+	"command": {
+		"name": "addDownlinkDeviceQueue",
+		"params": {
+				"confirmed": true,
+				"data": "14161712131819151B22",
+				"devEUI": "70B3D52DD3003E30",
+				"fPort": 1
 		}
-	}
+	}	
 }
 ```
 
