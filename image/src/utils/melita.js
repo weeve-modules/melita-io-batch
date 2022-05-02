@@ -45,9 +45,9 @@ const processCommand = async json => {
   // device not specified
   let method = null
   let path = null
-  let command = json.data.command.name
-  let params = json.data.command.params
-  let deviceEUI = json.data.command.deviceEUI
+  let command = json.command.name
+  let params = json.command.params
+  let deviceEUI = json.command.deviceEUI
   switch (command) {
     case 'createDevice':
       method = 'POST'
