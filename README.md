@@ -1,11 +1,11 @@
 # Melita IO Batch
 
-|                |                                  |
-| -------------- | -------------------------------- |
-| Name           | Melita IO Batch                  |
-| Version        | v1.0.0                           |
+|                |                                                                                       |
+| -------------- | ------------------------------------------------------------------------------------- |
+| Name           | Melita IO Batch                                                                       |
+| Version        | v1.0.0                                                                                |
 | Dockerhub Link | [weevenetwork/melita-io-batch](https://hub.docker.com/r/weevenetwork/melita-io-batch) |
-| Authors        | Mesud Pasic                      |
+| Authors        | Mesud Pasic                                                                           |
 
 - [Melita IO Batch](#melita-io-batch)
   - [Description](#description)
@@ -39,13 +39,13 @@ Module API module for communication with melita.io API for devices controller, f
 
 ### Set by the weeve Agent on the edge-node
 
-| Environment Variables | type   | Description                                    |
-| --------------------- | ------ | ---------------------------------------------- |
-| MODULE_NAME           | string | Name of the module                             |
-| MODULE_TYPE           | string | Type of the module (INGRESS, PROCESS, EGRESS)  |
-| INGRESS_HOST          | string | Host to which data will be received            |
-| INGRESS_PORT          | string | Port to which data will be received            |
-| INGRESS_PATH          | string | Path to which data will be received            |
+| Environment Variables | type   | Description                                   |
+| --------------------- | ------ | --------------------------------------------- |
+| MODULE_NAME           | string | Name of the module                            |
+| MODULE_TYPE           | string | Type of the module (INGRESS, PROCESS, EGRESS) |
+| INGRESS_HOST          | string | Host to which data will be received           |
+| INGRESS_PORT          | string | Port to which data will be received           |
+| INGRESS_PATH          | string | Path to which data will be received           |
 
 ## Available custom commands
 
@@ -70,7 +70,7 @@ Module API module for communication with melita.io API for devices controller, f
 ## Payload for POST request looks like, depending on the command, params can be different, but deviceEUI needs to be passed always
 
 ```js
-{	
+{
 	"command": {
 		"name": "addDownlinkDeviceQueue",
 		"params": {
@@ -79,7 +79,7 @@ Module API module for communication with melita.io API for devices controller, f
 				"devEUI": "70B3D52DD3003E30",
 				"fPort": 1
 		}
-	}	
+	}
 }
 ```
 
