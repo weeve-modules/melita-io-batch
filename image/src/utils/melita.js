@@ -121,22 +121,32 @@ const processCommand = async json => {
   if (method === null) return false
   let q_params = ''
   if (method === 'GET') q_params = `?${qs.stringify(params)}`
+  if (method === 'POST') params.devEUI = deviceEUI
   let res = await fetch(`${MELITA_API_URL}/lorawan${path}${q_params}`, {
     method: method,
     headers: {
-      Authorization: `Bearer ${authToken}`,
+      authorization: `Bearer ${authToken}`,
       accept: 'application/json',
       'Content-Type': 'application/json',
     },
     body: method !== 'GET' ? JSON.stringify(params) : null,
   })
   if (res.ok) {
-    return await res.json()
+    const contentType = res.headers.get('content-type')
+    if (contentType && contentType.indexOf('application/json') !== -1) return await res.json()
+    else return {}
   } else {
-    let err = await res.json()
-    return {
-      status: false,
-      data: err.error,
+    try {
+      let err = await res.json()
+      return {
+        status: false,
+        data: err.error,
+      }
+    } catch (e) {
+      return {
+        status: false,
+        data: e.message,
+      }
     }
   }
 }
