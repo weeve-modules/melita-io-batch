@@ -21,7 +21,7 @@ environments:
   - key: DEVICE_EUI_LIST
     description: List of device EUIs seperated by comma
     value: ''
-    default:
+    default: ''
     type: string
     name: List of device EUIs seperated by comma
   - key: EXECUTE_SINGLE_COMMAND
