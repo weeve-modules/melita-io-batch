@@ -1,5 +1,5 @@
 const {
-  EGRESS_URL,
+  EGRESS_URLS,
   INGRESS_HOST,
   INGRESS_PORT,
   MODULE_NAME,
@@ -110,8 +110,8 @@ app.post('/', async (req, res) => {
       })
     }
   }
-  if (EGRESS_URL !== '') {
-    const callRes = await fetch(EGRESS_URL, {
+  if (EGRESS_URLS) {
+    const callRes = await fetch(EGRESS_URLS, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -121,7 +121,7 @@ app.post('/', async (req, res) => {
       }),
     })
     if (!callRes.ok) {
-      if (ERROR_URL != '') {
+      if (ERROR_URL) {
         const callRes = await fetch(ERROR_URL, {
           method: 'POST',
           headers: {
@@ -131,7 +131,7 @@ app.post('/', async (req, res) => {
             output,
           }),
         })
-      } else return res.status(400).json({ status: false, message: `Error passing response data to ${EGRESS_URL}` })
+      } else return res.status(400).json({ status: false, message: `Error passing response data to ${EGRESS_URLS}` })
     } else return res.status(200).json({ status: true, message: 'Payload processed' })
   } else {
     return res.status(200).json({
