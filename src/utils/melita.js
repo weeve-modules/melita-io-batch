@@ -8,14 +8,14 @@ const qs = require('querystring')
 const fetch = require('node-fetch')
 
 const getAuthToken = async () => {
-  let res = await fetch(`${MELITA_API_URL}/auth/generate`, {
+  const res = await fetch(`${MELITA_API_URL}/auth/generate`, {
     method: 'POST',
     headers: {
       ApiKey: AUTHENTICATION_API_KEY,
     },
   })
   if (res.ok) {
-    let json = await res.json()
+    const json = await res.json()
     return json.authToken
   } else return false
 }
@@ -45,9 +45,9 @@ const processCommand = async json => {
   // device not specified
   let method = null
   let path = null
-  let command = json.command.name
-  let params = json.command.params
-  let deviceEUI = json.command.deviceEUI
+  const command = json.command.name
+  const params = json.command.params
+  const deviceEUI = json.command.deviceEUI
   switch (command) {
     case 'createDevice':
       method = 'POST'
@@ -122,7 +122,7 @@ const processCommand = async json => {
   let q_params = ''
   if (method === 'GET') q_params = `?${qs.stringify(params)}`
   if (method === 'POST') params.devEUI = deviceEUI
-  let res = await fetch(`${MELITA_API_URL}/lorawan${path}${q_params}`, {
+  const res = await fetch(`${MELITA_API_URL}/lorawan${path}${q_params}`, {
     method: method,
     headers: {
       authorization: `Bearer ${authToken}`,
@@ -137,7 +137,7 @@ const processCommand = async json => {
     else return {}
   } else {
     try {
-      let err = await res.json()
+      const err = await res.json()
       return {
         status: false,
         data: err.error,

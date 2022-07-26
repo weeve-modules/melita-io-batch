@@ -16,7 +16,7 @@ const expressWinston = require('express-winston')
 const { processCommand } = require('./utils/melita')
 const { formatTimeDiff } = require('./utils/util')
 
-//initialization
+// initialization
 app.use(express.urlencoded({ extended: true }))
 app.use(
   express.json({
@@ -30,7 +30,7 @@ app.use(
   })
 )
 
-//logger
+// logger
 app.use(
   expressWinston.logger({
     transports: [
@@ -52,7 +52,7 @@ app.use(
   })
 )
 const startTime = Date.now()
-//health check
+// health check
 app.get('/health', async (req, res) => {
   res.json({
     serverStatus: 'Running',
@@ -60,33 +60,33 @@ app.get('/health', async (req, res) => {
     module: MODULE_NAME,
   })
 })
-//main post listener
+// main post listener
 app.post('/', async (req, res) => {
-  let json = req.body
+  const json = req.body
   if (!json) {
     return res.status(400).json({ status: false, message: 'Payload structure is not valid.' })
   }
-  if (EXECUTE_SINGLE_COMMAND == 'no' && typeof json.command === 'undefined') {
+  if (EXECUTE_SINGLE_COMMAND === 'no' && typeof json.command === 'undefined') {
     return res.status(400).json({ status: false, message: 'Command is missing.' })
   }
   if (typeof json.command.params === 'undefined') {
     return res.status(400).json({ status: false, message: 'Parameters are missing.' })
   }
-  if (EXECUTE_SINGLE_COMMAND == 'yes' && SINGLE_COMMAND == '') {
+  if (EXECUTE_SINGLE_COMMAND === 'yes' && !SINGLE_COMMAND) {
     return res.status(400).json({ status: false, message: 'Single command not specified.' })
   }
-  if (DEVICE_EUI_LIST == '') {
+  if (!DEVICE_EUI_LIST) {
     return res.status(400).json({ status: false, message: 'Device list not specified.' })
   }
-  let devices = DEVICE_EUI_LIST.split(',')
-  if (devices.length == 0) {
+  const devices = DEVICE_EUI_LIST.split(',')
+  if (devices.length === 0) {
     return res.status(400).json({ status: false, message: 'Device list not specified.' })
   }
-  let output = []
+  const output = []
   let result = false
   for (let i = 0; i < devices.length; i++) {
     json.command.deviceEUI = devices[i]
-    if (EXECUTE_SINGLE_COMMAND == 'yes') {
+    if (EXECUTE_SINGLE_COMMAND === 'yes') {
       result = await processCommand(SINGLE_COMMAND, json)
     } else {
       result = await processCommand(json)
@@ -122,7 +122,7 @@ app.post('/', async (req, res) => {
     })
     if (!callRes.ok) {
       if (ERROR_URL) {
-        const callRes = await fetch(ERROR_URL, {
+        await fetch(ERROR_URL, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -141,12 +141,12 @@ app.post('/', async (req, res) => {
   }
 })
 
-//handle exceptions
+// handle exceptions
 app.use(async (err, req, res, next) => {
   if (res.headersSent) {
     return next(err)
   }
-  let errCode = err.status || 401
+  const errCode = err.status || 401
   res.status(errCode).send({
     status: false,
     message: err.message,
