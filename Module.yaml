@@ -4,7 +4,7 @@ description: 'Module for communication with melita.io API for devices controller
 versionName: 'v1.0.0'                    # Module version name that will be used to reference the module version, and uniquely identify the module version with a common name.
 isPublic: true                          # Boolean value that indicates if the module is Public or Private.
 categories:                             # Array of category that will be used to group the module in the UI.
-  - 'Melita'
+  - 'Egress'
 type: 'Output'      # Module type (Input, Processing, Output) that will be used to group the module in the UI.
 image:
   name: 'weevenetwork/melita-io-batch'     # Image name from the docker registry.
