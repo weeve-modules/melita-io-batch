@@ -59,7 +59,6 @@ envs:                                   # Array of environment variables that wi
     key: AUTHENTICATION_API_KEY
     description: Authentication token for authorization
     value: ''
-    default: ''
     type: 'text'
   - name: Error reporting URL
     key: ERROR_URL
