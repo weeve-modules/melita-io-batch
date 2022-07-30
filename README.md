@@ -4,7 +4,7 @@
 | -------------- | ------------------------------------------------------------------------------------- |
 | Name           | Melita IO Batch                                                                       |
 | Version        | v1.0.0                                                                                |
-| Dockerhub Link | [weevenetwork/melita-io-batch](https://hub.docker.com/r/weevenetwork/melita-io-batch) |
+| DockerHub | [weevenetwork/melita-io-batch](https://hub.docker.com/r/weevenetwork/melita-io-batch) |
 | Authors        | Mesud Pasic                                                                           |
 
 - [Melita IO Batch](#melita-io-batch)
@@ -42,10 +42,9 @@ Module API module for communication with melita.io API for devices controller, f
 | Environment Variables | type   | Description                                   |
 | --------------------- | ------ | --------------------------------------------- |
 | MODULE_NAME           | string | Name of the module                            |
-| MODULE_TYPE           | string | Type of the module (INGRESS, PROCESS, EGRESS) |
+| MODULE_TYPE           | string | Type of the module (Input, Processing, Output) |
 | INGRESS_HOST          | string | Host to which data will be received           |
 | INGRESS_PORT          | string | Port to which data will be received           |
-| INGRESS_PATH          | string | Path to which data will be received           |
 
 ## Available custom commands
 
