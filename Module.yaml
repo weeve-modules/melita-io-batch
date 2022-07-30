@@ -17,11 +17,15 @@ envs:                                   # Array of environment variables that wi
     description: Melita API URL used for communication
     value: ''
     type: 'text'
+    options: []
+    dependencies: []
   - name: List of device EUIs seperated by comma
     key: DEVICE_EUI_LIST
     description: List of device EUIs seperated by comma
     value: ''
     type: 'text'
+    options: []
+    dependencies: []
   - name: Execute single command
     key: EXECUTE_SINGLE_COMMAND
     description: Only execute single command via call
@@ -30,6 +34,7 @@ envs:                                   # Array of environment variables that wi
     options:
       - yes
       - no
+    dependencies: []
   - name: Single command name
     key: SINGLE_COMMAND
     value: ''
@@ -60,11 +65,15 @@ envs:                                   # Array of environment variables that wi
     description: Authentication token for authorization
     value: ''
     type: 'text'
+    options: []
+    dependencies: []
   - name: Error reporting URL
     key: ERROR_URL
     description: URL for reporting error if request fails
     value: ''
     type: 'text'
+    options: []
+    dependencies: []
 ports:                                  # Array of ports that will be exposed by the module.
   - container: 8080                     # Port number from the container.
     host: 8080                          # Port number to map on the host.
