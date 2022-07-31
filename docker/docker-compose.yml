@@ -7,7 +7,6 @@ services:
     environment:
       MODULE_NAME: "Melita IO Batch"
       MODULE_TYPE: "Output"
-      EGRESS_URLS: "https://testdockercompose.free.beeceptor.com"
       INGRESS_HOST: "0.0.0.0"
       INGRESS_PORT: "80"
       PROFILE_IDS: ''

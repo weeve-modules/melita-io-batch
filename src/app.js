@@ -1,20 +1,16 @@
 const {
-  EGRESS_URLS,
   INGRESS_HOST,
   INGRESS_PORT,
   MODULE_NAME,
   EXECUTE_SINGLE_COMMAND,
   SINGLE_COMMAND,
-  ERROR_URL,
   DEVICE_EUI_LIST,
 } = require('./config/config.js')
-const fetch = require('node-fetch')
 const express = require('express')
 const app = express()
 const winston = require('winston')
 const expressWinston = require('express-winston')
 const { processCommand } = require('./utils/melita')
-const { formatTimeDiff } = require('./utils/util')
 
 // initialization
 app.use(express.urlencoded({ extended: true }))
@@ -51,15 +47,6 @@ app.use(
     }, // optional: allows to skip some log messages based on request and/or response
   })
 )
-const startTime = Date.now()
-// health check
-app.get('/health', async (req, res) => {
-  res.json({
-    serverStatus: 'Running',
-    uptime: formatTimeDiff(Date.now(), startTime),
-    module: MODULE_NAME,
-  })
-})
 // main post listener
 app.post('/', async (req, res) => {
   const json = req.body
@@ -110,35 +97,7 @@ app.post('/', async (req, res) => {
       })
     }
   }
-  if (EGRESS_URLS) {
-    const callRes = await fetch(EGRESS_URLS, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        data: output,
-      }),
-    })
-    if (!callRes.ok) {
-      if (ERROR_URL) {
-        await fetch(ERROR_URL, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            output,
-          }),
-        })
-      } else return res.status(400).json({ status: false, message: `Error passing response data to ${EGRESS_URLS}` })
-    } else return res.status(200).json({ status: true, message: 'Payload processed' })
-  } else {
-    return res.status(200).json({
-      status: true,
-      data: output,
-    })
-  }
+  return res.status(200).json({ status: true, message: 'Payload processed' })
 })
 
 // handle exceptions
