@@ -3,7 +3,7 @@ Decoder documentation:
 https://www.melita.io/api-documentation/
 */
 
-const { MELITA_API_URL, AUTHENTICATION_API_KEY } = require('../config/config')
+const { MELITA_API_URL, AUTHENTICATION_API_KEY, ERROR_URL } = require('../config/config')
 const qs = require('querystring')
 const fetch = require('node-fetch')
 
@@ -119,10 +119,10 @@ const processCommand = async json => {
       break
   }
   if (method === null) return false
-  let q_params = ''
-  if (method === 'GET') q_params = `?${qs.stringify(params)}`
+  let qParams = ''
+  if (method === 'GET') qParams = `?${qs.stringify(params)}`
   if (method === 'POST') params.devEUI = deviceEUI
-  const res = await fetch(`${MELITA_API_URL}/lorawan${path}${q_params}`, {
+  const res = await fetch(`${MELITA_API_URL}/lorawan${path}${qParams}`, {
     method: method,
     headers: {
       authorization: `Bearer ${authToken}`,
@@ -143,6 +143,15 @@ const processCommand = async json => {
         data: err.error,
       }
     } catch (e) {
+      if (ERROR_URL) {
+        await fetch(ERROR_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(params),
+        })
+      }
       return {
         status: false,
         data: e.message,
